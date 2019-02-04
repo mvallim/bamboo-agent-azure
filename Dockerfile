@@ -18,6 +18,7 @@ RUN DEBIAN_FRONTEND=noninteractive && \
     cd /usr/bin && ln -fs pip3 pip && \
     cd /opt && \
     curl --progress-bar --location 'https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/5.0.7/flyway-commandline-5.0.7-linux-x64.tar.gz' | tar -xvzf - && \
+    chown ${BAMBOO_USER}:${BAMBOO_USER} -R /opt/flyway-5.0.7 && \
     sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
     dpkg-reconfigure --frontend=noninteractive locales && \
     update-locale LANG=en_US.UTF-8
